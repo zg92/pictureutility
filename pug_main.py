@@ -241,12 +241,16 @@ class pug_main:
 
     def enter_instagramify_root(self):
         self.instagramify_root = self.ig_photo_root.get('1.0',"end-1c")
-        self.user_info['instagramify_root'] = self.instagramify_root
-        with open('pug_userinfo.txt','w') as fp:
-            json.dump(self.user_info, fp)
+        if len(self.ig_photo_root.get('1.0',"end-1c")) == 0:
             self.console.delete('1.0', 'end-1c')
-            self.console.insert('1.0', 'Instagramify Root Has Been Saved and Submitted!')
-        self.ig_photo_root.configure(bg='#d4d4d4')
+            self.console.insert('1.0', 'Please Enter a Instagramify Root Name!')
+        else:
+            self.user_info['instagramify_root'] = self.instagramify_root
+            with open('pug_userinfo.txt','w') as fp:
+                json.dump(self.user_info, fp)
+                self.console.delete('1.0', 'end-1c')
+                self.console.insert('1.0', 'Instagramify Root Has Been Saved and Submitted!')
+            self.ig_photo_root.configure(bg='#d4d4d4')
 
     def ig_ify(self):
         if os.path.exists(self.instagramify_root) is True:
@@ -272,11 +276,11 @@ class pug_main:
 
 def main():
     with open('pug_userinfo.txt', 'r') as fp:
-    j = fp.read()
+        j = fp.read()
     user_info = json.loads(j)
     root = tk.Tk()
     app = pug_main(root, user_info)
     root.mainloop()
 
 if __name__ == "__main__":
-    pass
+    main()
