@@ -1,1 +1,1 @@
-{"destination_drive": "", "source_drive": "", "final_source": "", "final_dest": "", "mediafy_root": ""}
+{"destination_drive": "", "source_drive": "", "final_source": "", "final_dest": "", "instagramify_root": ""}
